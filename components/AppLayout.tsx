@@ -12,10 +12,10 @@ export default function AppLayout({
     children: React.ReactNode;
 }) {
     return (
-        <>
+        <div className="size-full">
             <ThemeProvider theme={customTheme}>
                 {children}
             </ThemeProvider>
-        </>
+        </div>
     );
 }
