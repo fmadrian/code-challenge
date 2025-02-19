@@ -21,15 +21,18 @@ export default function Page() {
         <div>
             <h1>Pokemon index</h1>
             <div className="flex flex-row gap-8 flex-wrap">
-            {searchData && searchData.length > 0 ?
-                searchData.map((item, index) => (
-                    <Link key={index} href={`/pokemon/${item.id}`}>
-                        <span>{item.name}</span>
-                    </Link>
-                )) : (<>
-                    <h1>No items.</h1>
-                </>)
-            }
+                {isLoading ?
+                    <h1>Loading...</h1> :
+
+                    searchData && searchData.length > 0 ?
+                        searchData.map((item, index) => (
+                            <Link key={index} href={`/pokemon/${item.id}`}>
+                                <span>{item.name}</span>
+                            </Link>
+                        )) : (<>
+                            <h1>No items.</h1>
+                        </>)
+                }
             </div>
         </div>
     )
