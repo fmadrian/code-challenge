@@ -17,6 +17,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import NoItems from "@/components/NoItems";
+import {OpenAIClient} from "@/services/OpenAIClient";
+import {Alert} from "@mui/material";
 
 /**
  * Component in charge of searching
@@ -36,6 +38,9 @@ export default function PokemonData({id,}: {id: number}){
     const [isLoading, setIsLoading] = useState<boolean>(false);
     // Is the create/update dialog open.
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+    // AI Fact about the Pokemon loaded.
+    const[fact, setFact] = useState<string>("");
+    const[isLoadingFact, setIsLoadingFact] = useState<boolean>(false);
 
     // Item to be displayed in page.
     const [item, setItem] = useState<any>({});
@@ -44,6 +49,13 @@ export default function PokemonData({id,}: {id: number}){
     const onUpdate = (data:any) => {
         updatePokemon(id, data);
         setIsDialogOpen(false);
+    }
+
+    const askAI = async () =>{
+        setIsLoadingFact(true);
+        const answer = await OpenAIClient.instance.askAboutPokemon(item.name)
+        setFact(answer);
+        setIsLoadingFact(false);
     }
 
     // Load Pokemon data from API or application's data.
@@ -98,54 +110,86 @@ export default function PokemonData({id,}: {id: number}){
                     <>
                         <div className="flex flex-col sm:flex-row gap-4">
                             <h1 className="font-bold text-4xl">{item.name} ({item.id})</h1>
-                            <Button className="flex-grow" variant="contained" color="info" onClick={()=>setIsDialogOpen(true)}>Update</Button>
+                            <Button className="" variant="contained" color="info" onClick={()=>setIsDialogOpen(true)}>Update Pokemon</Button>
+                            <Button className="" variant="contained" color="success" onClick={askAI}>Ask AI Assistant</Button>
                         </div>
                         <Divider/>
                         <div className="grid grid-cols-1 sm:grid-cols-2">
+                            {/*Render front and back images if they are available.*/}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 sm:p-8 sm:gap-x-4">
                             {
-                                item.sprites && item.sprites.other && item.sprites.other.home ?
-                                    <Image src={item.sprites.other.home.front_default}
+                                item.sprites && item.sprites.front_default ?
+                                <Image src={item.sprites.front_default}
+                                       alt={item.name}
+                                       width={0}
+                                       height={0}
+                                       sizes="100vw"
+                                       className="w-full h-full"
+                                />: <NoItems message="Image not available." />
+                            }
+                            {
+                                item.sprites && item.sprites.back_default ?
+                                    <Image src={item.sprites.back_default}
                                            alt={item.name}
                                            width={0}
                                            height={0}
                                            sizes="100vw"
-                                           style={{width: '75%', height: '75%'}}/> : <></>
+                                           className="w-full h-full"
+                                    />: <NoItems message="Image not available." />
                             }
+                        </div>
                             <div className="flex flex-col gap-y-4">
-                                {/* Basic information */}
+                                {/* Display AI obtained fact about Pokemon*/}
+                                {
+                                    isLoadingFact ? <Loading message="Using AI to retrieve an interesting fact..." /> :
+                                    fact !== ""
+                                    ?
+                                    <>
+                                        <h3 className="text-lg font-bold">AI provided additional information
+                                            about {item.name}:</h3>
+                                        <Alert severity="success">
+                                            {fact}
+                                        </Alert>
+                                        <p className="text-xs">{"Information obtained using OpenAI's gpt-4o-mini model."}</p>
+                                        <Divider/>
+                                    </>
+                                    : <></>
+                                }
+                                {/* Display basic information obtained from API or user's input */}
+                                <h3 className="text-lg font-bold">Basic information:</h3>
                                 <TableContainer component={Paper}>
                                     <Table>
                                         <TableHead>
                                             <TableRow>
-                                                <TableCell>Attribute</TableCell>
-                                                <TableCell>Value</TableCell>
+                                                <TableCell className="font-bold">Attribute</TableCell>
+                                                <TableCell className="font-bold">Value</TableCell>
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                        <TableRow>
-                                            <TableCell>Name</TableCell>
-                                            <TableCell>{item.name}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Base experience</TableCell>
-                                            <TableCell>{item.base_experience}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Height</TableCell>
-                                            <TableCell>{item.height}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Weight</TableCell>
-                                            <TableCell>{item.weight}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Order</TableCell>
-                                            <TableCell>{item.order}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Is default</TableCell>
-                                            <TableCell>{item.is_default ? 'Yes' : 'No'}</TableCell>
-                                        </TableRow>
+                                            <TableRow hover>
+                                                <TableCell>Name</TableCell>
+                                                <TableCell>{item.name}</TableCell>
+                                            </TableRow>
+                                            <TableRow hover>
+                                                <TableCell>Base experience</TableCell>
+                                                <TableCell>{item.base_experience}</TableCell>
+                                            </TableRow>
+                                            <TableRow hover>
+                                                <TableCell>Height</TableCell>
+                                                <TableCell>{item.height}</TableCell>
+                                            </TableRow>
+                                            <TableRow hover>
+                                                <TableCell>Weight</TableCell>
+                                                <TableCell>{item.weight}</TableCell>
+                                            </TableRow>
+                                            <TableRow hover>
+                                                <TableCell>Order</TableCell>
+                                                <TableCell>{item.order}</TableCell>
+                                            </TableRow>
+                                            <TableRow hover>
+                                                <TableCell>Is default</TableCell>
+                                                <TableCell>{item.is_default ? 'Yes' : 'No'}</TableCell>
+                                            </TableRow>
                                         </TableBody>
                                     </Table>
                                 </TableContainer>

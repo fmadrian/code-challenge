@@ -57,11 +57,8 @@ export const useDataStore = create<DataStore>()((set) => ({
                     id: pokemon.id ?? state.nextId,
                     // Add default image to the Pokemon when adding it to array.
                     sprites: pokemon.sprites ?? {
-                        other: {
-                            home : {
-                                "front_default" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/43.png"
-                            }
-                        }
+                        "front_default" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/43.png",
+                        "back_default" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/43.png",
                     }
                 }
             ],
