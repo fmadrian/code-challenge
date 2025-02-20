@@ -4,9 +4,19 @@ import {useEffect, useState} from "react";
 import {useDataStore} from "@/stores/data-store";
 import {getPokemonData} from "@/services/PokemonService";
 import Image from "next/image";
-import {Divider, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import { redirect } from 'next/navigation'
 import Loading from "@/components/Loading";
+import PokemonForm from "@/components/PokemonForm";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import NoItems from "@/components/NoItems";
 
 /**
  * Component in charge of searching
@@ -15,18 +25,29 @@ import Loading from "@/components/Loading";
  */
 export default function PokemonData({id,}: {id: number}){
 
-    // Application's data in state.
+    // Application's state.
     const data = useDataStore(state => state.data);
     const searchData = useDataStore(state => state.searchData);
     const createPokemon = useDataStore(state => state.createPokemon);
+    const updatePokemon = useDataStore(state => state.updatePokemon);
 
     // Component's state.
+    // Is loading from PokeAPI.
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    // Item to be displayed.
+    // Is the create/update dialog open.
+    const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+
+    // Item to be displayed in page.
     const [item, setItem] = useState<any>({});
 
+    // Update Pokemon in state and close dialog.
+    const onUpdate = (data:any) => {
+        updatePokemon(id, data);
+        setIsDialogOpen(false);
+    }
 
-    const loadInComponent = async (id:number) =>{
+    // Load Pokemon data from API or application's data.
+    const loadItemInComponent = async (id:number) =>{
         // Search in application's data.
         let pokemon = data.find((item) => item.id === id);
         if(!pokemon){
@@ -45,24 +66,40 @@ export default function PokemonData({id,}: {id: number}){
         return pokemon;
     };
 
+    // When component is mounted, load item.
     useEffect(() => {
         setIsLoading(true);
-        loadInComponent(id).then((res)=> {
-            console.log(res);
+        loadItemInComponent(id).then((res)=> {
             setItem(res)
         });
         setIsLoading(false);
-    }, []);
+    },[]);
+
+    // When data array changes, update item.
+    useEffect(() => {
+        loadItemInComponent(id).then((res)=> {
+            setItem(res)
+        });
+    }, [data]);
 
     return (
         <div className="flex flex-col gap-y-4 p-3 sm:p-6">
+            {/*Dialog with form to update a Pokemon.*/}
+            <PokemonForm isDialogOpen={isDialogOpen}
+                         onCloseDialog={() => setIsDialogOpen(false)}
+                         onSaveChanges={onUpdate}
+                         element={item}
+            />
             {
                 isLoading ?
                     <Loading message="Loading Pokemon data..." />
                     :
                     item ?
                     <>
-                        <h1 className="font-bold text-4xl">{item.name} ({item.id})</h1>
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <h1 className="font-bold text-4xl">{item.name} ({item.id})</h1>
+                            <Button className="flex-grow" variant="contained" color="info" onClick={()=>setIsDialogOpen(true)}>Update</Button>
+                        </div>
                         <Divider/>
                         <div className="grid grid-cols-1 sm:grid-cols-2">
                             {
@@ -116,7 +153,7 @@ export default function PokemonData({id,}: {id: number}){
                         </div>
                     </>
                         :
-                        <></>
+                        <NoItems message="No information found for this Pokemon." />
             }
         </div>
     );

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import {Button, Divider} from "@mui/material";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 import {useDataStore} from "@/stores/data-store";
 
 /**
@@ -7,23 +8,12 @@ import {useDataStore} from "@/stores/data-store";
  * @param pokemon - Pokemon to be displayed.
  * @param refreshFilteredList - Function to refresh the filtered list on parent component.
  */
-export default function PokemonCard({pokemon, refreshFilteredList}: { pokemon:any, refreshFilteredList: (id:number) => void}){
+export default function PokemonCard({pokemon}: { pokemon:any,}){
     // Pokemon's search data.
     const {id, name, url} = pokemon;
 
     // Application's state.
     const deletePokemon = useDataStore(state => state.deletePokemon);
-
-    const onUpdate = () => {
-        // TODO: Implement behavior.
-        console.log("update");
-    };
-
-    const onDelete = () => {
-        deletePokemon(id);
-        refreshFilteredList(id);
-    };
-
 
     return (
         <div className="transition border flex flex-col p-4 gap-y-4 hover:bg-neutral-100">
@@ -35,8 +25,8 @@ export default function PokemonCard({pokemon, refreshFilteredList}: { pokemon:an
                 </div>
             </Link>
             <div className="flex flex-col sm:flex-row gap-2 justify-stretch overflow-auto">
-                <Button className="flex-grow" variant="contained" color="info" onClick={onUpdate}>Update</Button>
-                <Button className="flex-grow" variant="contained" color="error" onClick={onDelete}>Delete</Button>
+                {/* Button calls delete function from state. */}
+                <Button className="flex-grow" variant="contained" color="error" onClick={() => deletePokemon(id)}>Delete</Button>
                 </div>
             </div>
     );
