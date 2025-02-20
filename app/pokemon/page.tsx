@@ -7,6 +7,7 @@ import {Button, Divider, TextField} from "@mui/material";
 import PokemonCard from "@/components/PokemonCard";
 import {useForm} from "react-hook-form";
 import {createForm} from "@/services/FormService";
+import Loading from "@/components/Loading";
 
 export default function Page() {
     // Shows loading component while data is being fetched.
@@ -57,7 +58,7 @@ export default function Page() {
     }, [])
 
     return (
-        <div className="flex flex-col gap-y-4 p-2 sm:p-8">
+        <div className="flex flex-col gap-y-4 p-3 sm:p-6">
             <h1 className="font-bold text-4xl">All Pokemon available </h1>
             <Divider/>
             {/* Form to search available Pokemon.*/}
@@ -74,17 +75,20 @@ export default function Page() {
             </form>
             <Divider/>
             {/* Display filtered data using responsive grid.*/}
-            <span className="text-xl">Showing {filteredData.length} of {searchData.length} possible results:</span>
+
             {!isLoading ?
-                <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
-                    {filteredData && filteredData.length > 0 ?
-                        filteredData.map((item, index) => <PokemonCard key={index} pokemon={item}/>) : (<>
-                            <h1>No items.</h1>
-                        </>)
-                    }
-                </div> :
-                <h1>Loading...</h1>
+                <>
+                    <span className="text-xl">Showing {filteredData.length} of {searchData.length} possible results:</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+                        {filteredData && filteredData.length > 0 ?
+                            filteredData.map((item, index) => <PokemonCard key={index} pokemon={item}/>) : (<>
+                                <h1>No items.</h1>
+                            </>)
+                        }
+                    </div>
+                </> :
+                <Loading message="Loading all Pokemon..." />
             }
         </div>
-)
+    )
 }

@@ -6,6 +6,7 @@ import {getPokemonData} from "@/services/PokemonService";
 import Image from "next/image";
 import {Divider, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import { redirect } from 'next/navigation'
+import Loading from "@/components/Loading";
 
 /**
  * Component in charge of searching
@@ -54,14 +55,14 @@ export default function PokemonData({id,}: {id: number}){
     }, []);
 
     return (
-        <>
+        <div className="flex flex-col gap-y-4 p-3 sm:p-6">
             {
                 isLoading ?
-                    <p>Loading...</p>
+                    <Loading message="Loading Pokemon data..." />
                     :
                     item ?
-                    <div className="grid grid-cols-1 gap-y-4 p-3 sm:p-6">
-                        <h1 className="font-bold text-4xl">{item.name}</h1>
+                    <>
+                        <h1 className="font-bold text-4xl">{item.name} ({item.id})</h1>
                         <Divider/>
                         <div className="grid grid-cols-1 sm:grid-cols-2">
                             {
@@ -113,10 +114,10 @@ export default function PokemonData({id,}: {id: number}){
                                 </TableContainer>
                             </div>
                         </div>
-                    </div>
+                    </>
                         :
                         <></>
             }
-        </>
+        </div>
     );
 }
