@@ -8,6 +8,7 @@ import PokemonCard from "@/components/PokemonCard";
 import {useForm} from "react-hook-form";
 import {createForm} from "@/services/FormService";
 import Loading from "@/components/Loading";
+import NoItems from "@/components/NoItems";
 
 export default function Page() {
     // Shows loading component while data is being fetched.
@@ -79,13 +80,14 @@ export default function Page() {
             {!isLoading ?
                 <>
                     <span className="text-xl">Showing {filteredData.length} of {searchData.length} possible results:</span>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
-                        {filteredData && filteredData.length > 0 ?
-                            filteredData.map((item, index) => <PokemonCard key={index} pokemon={item}/>) : (<>
-                                <h1>No items.</h1>
-                            </>)
-                        }
-                    </div>
+                    {filteredData && filteredData.length > 0 ?
+                        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+                            {filteredData.map((item, index) => <PokemonCard key={index} pokemon={item}/>)}
+                        </div> :
+                        <>
+                            <NoItems message="No Pokemon were found" />
+                        </>
+                    }
                 </> :
                 <Loading message="Loading all Pokemon..." />
             }
