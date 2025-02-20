@@ -20,3 +20,17 @@ export const getPokemonSearchData = async () => {
         return [];
     }
 };
+/**
+ * Uses the URL provided in the search response to retrieve the Pokemon's data.
+ * @param url API endpoint to retrieve the Pokemon's data.
+ */
+export const getPokemonData = async (id:number , url: string) => {
+    try {
+        const res = await axios.get(`${url}`);
+        // We must change the ID to the one assigned on the application.
+        return {...res.data, id};
+    } catch (error) {
+        console.error('Error getting Pokemon search data:', error);
+        return [];
+    }
+}
