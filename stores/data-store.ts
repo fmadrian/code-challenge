@@ -26,8 +26,11 @@ type DataStore = {
     reset: () => void;
     // Adds search data from PokeAPI.
     setSearchData: (searchData: PokemonSearchItem[]) => void;
+    // Adds a Pokemon (from PokeAPI or user created) to the data arrays.
     createPokemon: (pokemon:any) => void;
+    // Deletes a Pokemon from the data arrays.
     deletePokemon: (pokemon:any) => void;
+    // Updates a Pokemon's data in both arrays.
     updatePokemon: (id:number, pokemon:any) => void;
 }
 /**

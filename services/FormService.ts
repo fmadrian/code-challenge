@@ -4,8 +4,6 @@
  * @param form
  */
 export const createForm = (form: any)=>{
-    /*const { register, handleSubmit, formState, reset, setValue, control, getValues  } = form;
-    return { register, handleSubmit, formState, reset, setValue, control, getValues, errors: {...formState} };*/
     const { register, handleSubmit, formState: {errors}, reset, setValue, control, getValues  } = form;
     return { register, handleSubmit, errors, reset, setValue, control, getValues };
 }
