@@ -26,6 +26,11 @@ export default function Page() {
         search : createForm(useForm({}))
     };
 
+    // Updates the filtered data list after a Pokemon is deleted.
+    const refreshFilteredList = (id: number) => {
+        setFilteredData([...filteredData.filter((item) => item.id !== id)]);
+    }
+
     // Filters search data based on name passed.
     // If no name is passed, the original search data is shown.
     const filterSearchData = (form: any) =>{
@@ -82,7 +87,7 @@ export default function Page() {
                     <span className="text-xl">Showing {filteredData.length} of {searchData.length} possible results:</span>
                     {filteredData && filteredData.length > 0 ?
                         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
-                            {filteredData.map((item, index) => <PokemonCard key={index} pokemon={item}/>)}
+                            {filteredData.map((item, index) => <PokemonCard key={index} pokemon={item} refreshFilteredList={refreshFilteredList}/>)}
                         </div> :
                         <>
                             <NoItems message="No Pokemon were found" />

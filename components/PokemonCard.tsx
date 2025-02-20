@@ -1,12 +1,18 @@
 import Link from "next/link";
 import {Button, Divider} from "@mui/material";
+import {useDataStore} from "@/stores/data-store";
 
 /**
  * Component displays search data from a Pokemon.
  * @param pokemon - Pokemon to be displayed.
+ * @param refreshFilteredList - Function to refresh the filtered list on parent component.
  */
-export default function PokemonCard({pokemon}: any){
+export default function PokemonCard({pokemon, refreshFilteredList}: { pokemon:any, refreshFilteredList: (id:number) => void}){
+    // Pokemon's search data.
     const {id, name, url} = pokemon;
+
+    // Application's state.
+    const deletePokemon = useDataStore(state => state.deletePokemon);
 
     const onUpdate = () => {
         // TODO: Implement behavior.
@@ -14,8 +20,8 @@ export default function PokemonCard({pokemon}: any){
     };
 
     const onDelete = () => {
-        // TODO: Implement behavior.
-        console.log("delete");
+        deletePokemon(id);
+        refreshFilteredList(id);
     };
 
 

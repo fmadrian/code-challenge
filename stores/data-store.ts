@@ -24,6 +24,8 @@ type DataStore = {
     reset: () => void;
     // Adds search data from PokeAPI.
     setSearchData: (searchData: PokemonSearchItem[]) => void;
+    createPokemon: (pokemon:any) => void;
+    deletePokemon: (pokemon:any) => void;
 }
 /**
  * Store handles the application's locally stored data.
@@ -56,9 +58,10 @@ export const useDataStore = create<DataStore>()((set) => ({
         })
     })),
 
-    // Delete a Pokemon from the data array.
+    // Delete a Pokemon from both data arrays.
     deletePokemon: (id:number)=> set((state) => ({
-        data: [...state.data.filter((item) => item.id !== id)]
+        data: [...state.data.filter((item) => item.id !== id)],
+        searchData: [...state.searchData.filter((item) => item.id !== id)]
     }))
 
 }))
