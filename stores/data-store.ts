@@ -41,7 +41,7 @@ export const useDataStore = create<DataStore>()((set) => ({
     searchData : [],
     data: [],
 
-    reset: (searchData: PokemonSearchItem[] = []) => set({searchData, data: []}),
+    reset: (searchData: PokemonSearchItem[] = []) => set({nextId: 2000, searchData, data: []}),
 
     setSearchData: (searchData: PokemonSearchItem[]) => set(() => ({
         searchData: [...searchData]
