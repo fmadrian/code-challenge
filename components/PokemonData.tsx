@@ -17,8 +17,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import NoItems from "@/components/NoItems";
-import {OpenAIClient} from "@/helpers/OpenAIClient";
 import {Alert} from "@mui/material";
+import {askAIAboutPokemon} from "@/helpers/OpenAIClient";
 
 /**
  * Component in charge of searching
@@ -53,7 +53,7 @@ export default function PokemonData({id,}: {id: number}){
 
     const askAI = async () =>{
         setIsLoadingFact(true);
-        const answer = await OpenAIClient.instance.askAboutPokemon(item.name)
+        const answer = await askAIAboutPokemon(item.name)
         setFact(answer);
         setIsLoadingFact(false);
     }
