@@ -7,7 +7,7 @@ Adrián Fallas Marín's code challenge solution.
 
 The solution developed is an application to show different Pokémon and manage some of their data. The data is extracted using PokeAPI's API or is input by the user.
 
-The users can also ask the AI assistant to give them additional facts about a Pokémon they are looking at.
+The users can also ask the AI assistant to give them additional facts about a Pokémon they are currently seeing.
 ### AI integration 
 
 OpenAI's Completions API provides complementary facts about the Pokémon selected. This improves the experience of searching a Pokémon's data as it offers data which is not given by PokeAPI.
