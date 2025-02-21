@@ -7,30 +7,30 @@ import { create } from 'zustand'
 type PokemonSearchItem = {
     // ID assigned when objects are retrieved from API or created
     id: number;
-    // Pokemon's name.
+    // Pokémon's name.
     name: string;
-    // PokeAPI endpoint to retrieve all the Pokemon's data.
+    // PokeAPI endpoint to retrieve all the Pokémon's data.
     url: string;
 }
 /**
  * Definition for the DataStore.
  */
 type DataStore = {
-    // ID to be assigned to the next Pokemon created.
+    // ID to be assigned to the next Pokémon created.
     nextId: number,
-    // Every Pokemon's URL and name.
+    // Every Pokémon's URL and name.
     searchData: PokemonSearchItem[];
-    // More detailed data about every Pokemon (fetched on demand).
+    // More detailed data about every Pokémon (fetched on demand).
     data : any[];
     // Clears both arrays.
     reset: () => void;
     // Adds search data from PokeAPI.
     setSearchData: (searchData: PokemonSearchItem[]) => void;
-    // Adds a Pokemon (from PokeAPI or user created) to the data arrays.
+    // Adds a Pokémon (from PokeAPI or user created) to the data arrays.
     createPokemon: (pokemon:any) => void;
-    // Deletes a Pokemon from the data arrays.
+    // Deletes a Pokémon from the data arrays.
     deletePokemon: (pokemon:any) => void;
-    // Updates a Pokemon's data in both arrays.
+    // Updates a Pokémon's data in both arrays.
     updatePokemon: (id:number, pokemon:any) => void;
 }
 /**
@@ -47,7 +47,7 @@ export const useDataStore = create<DataStore>()((set) => ({
         searchData: [...searchData]
     })),
 
-    // Add a fetched or manually created Pokemon to the both data arrays.
+    // Add a fetched or manually created Pokémon to the both data arrays.
     // and increase ID count by 1.
     createPokemon: (pokemon:any) =>  set((state) => ({
         data: [
@@ -55,7 +55,7 @@ export const useDataStore = create<DataStore>()((set) => ({
                 {
                     ...pokemon,
                     id: pokemon.id ?? state.nextId,
-                    // Add default image to the Pokemon when adding it to array.
+                    // Add default image to the Pokémon when adding it to array.
                     sprites: pokemon.sprites ?? {
                         "front_default" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/43.png",
                         "back_default" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/43.png",
@@ -68,9 +68,9 @@ export const useDataStore = create<DataStore>()((set) => ({
         nextId: state.nextId + 1,
     })),
 
-    // Update a Pokemon's data.
+    // Update a Pokémon's data.
     updatePokemon: (id:number, pokemon:any) =>  set((state) => ({
-        // Search through the data array and change the data of the Pokemon with the matching ID.
+        // Search through the data array and change the data of the Pokémon with the matching ID.
         data: state.data.map((item) => {
             if(item.id === id) {
                 return {
@@ -91,7 +91,7 @@ export const useDataStore = create<DataStore>()((set) => ({
         })
     })),
 
-    // Delete a Pokemon from both data arrays.
+    // Delete a Pokémon from both data arrays.
     deletePokemon: (id:number)=> set((state) => ({
         data: [...state.data.filter((item) => item.id !== id)],
         searchData: [...state.searchData.filter((item) => item.id !== id)]

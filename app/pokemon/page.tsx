@@ -15,7 +15,7 @@ export default function Page() {
 
     // Shows loading component while data is being fetched.
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    // Controls the visibility of the dialog to create a new Pokemon.
+    // Controls the visibility of the dialog to create a new Pokémon.
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
     // Store the last searched term to reuse it when a new item is created or deleted.
     const [lastSearchTerm, setLastSearchTerm] = useState<string>("");
@@ -31,7 +31,7 @@ export default function Page() {
         search : createForm(useForm({}))
     };
 
-    // Receives data from form and creates a new Pokemon.
+    // Receives data from form and creates a new Pokémon.
     const onSaveChanges = (data: any) => {
         createPokemon(data);
         setIsDialogOpen(false);
@@ -66,20 +66,20 @@ export default function Page() {
 
     return (
         <div className="flex flex-col gap-y-4 p-3 sm:p-6">
-            <h1 className="font-bold text-4xl">All Pokemon available </h1>
+            <h1 className="font-bold text-4xl">All Pokémon available </h1>
             <PokemonForm isDialogOpen={isDialogOpen}
                          onCloseDialog={() => setIsDialogOpen(false)}
                          onSaveChanges={onSaveChanges}
             />
             <Divider/>
-            {/* Form to search available Pokemon.*/}
+            {/* Form to search available Pokémon.*/}
             <form onSubmit={forms.search.handleSubmit(filterSearchData)}>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-5">
                     <TextField id="searchTerm"
                            className="col-span-2"
                            {...(forms.search.register)('searchTerm')}
-                           label="Search a Pokemon"
-                           placeholder="Search a Pokemon by its name. Ex, Pikachu, Bulbasaur"
+                           label="Search a Pokémon"
+                           placeholder="Search a Pokémon by its name. Ex, Pikachu, Bulbasaur"
                            variant="outlined"/>
                     <Button className="col-span-1" type="submit" variant="contained">Search</Button>
                     <Button className="col-span-1" type="button" variant="contained" color="success" onClick={()=>setIsDialogOpen(true)}>Create</Button>
@@ -96,11 +96,11 @@ export default function Page() {
                             {filteredData.map((item, index) => <PokemonCard key={index} pokemon={item} />)}
                         </div> :
                         <>
-                            <NoItems message="No Pokemon were found. Create one, change the search term or click 'Reset data'." />
+                            <NoItems message="No Pokémon were found. Create one, change the search term or click 'Reset data'." />
                         </>
                     }
                 </> :
-                <Loading message="Loading all Pokemon..." />
+                <Loading message="Loading all Pokémon..." />
             }
         </div>
     )

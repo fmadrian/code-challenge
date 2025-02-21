@@ -38,14 +38,14 @@ export default function PokemonData({id,}: {id: number}){
     const [isLoading, setIsLoading] = useState<boolean>(false);
     // Is the create/update dialog open.
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-    // AI Fact about the Pokemon loaded.
+    // AI Fact about the Pokémon loaded.
     const[fact, setFact] = useState<string>("");
     const[isLoadingFact, setIsLoadingFact] = useState<boolean>(false);
 
     // Item to be displayed in page.
     const [item, setItem] = useState<any>({});
 
-    // Update Pokemon in state and close dialog.
+    // Update Pokémon in state and close dialog.
     const onUpdate = (data:any) => {
         updatePokemon(id, data);
         setIsDialogOpen(false);
@@ -58,18 +58,18 @@ export default function PokemonData({id,}: {id: number}){
         setIsLoadingFact(false);
     }
 
-    // Load Pokemon data from API or application's data.
+    // Load Pokémon data from API or application's data.
     const loadItemInComponent = async (id:number) =>{
         // Search in application's data.
         let pokemon = data.find((item) => item.id === id);
         if(!pokemon){
-            // If the Pokemon is not found, search the API endpoint to retrieve on the search data array.
+            // If the Pokémon is not found, search the API endpoint to retrieve on the search data array.
             const pokemonInSearch = searchData.find((item) => item.id === id);
-            // If the Pokemon is not found in the search data array, it means it doesn't exist.
+            // If the Pokémon is not found in the search data array, it means it doesn't exist.
             if(!pokemonInSearch) {
                 redirect('/not-found');
             }else {
-                // Retrieve Pokemon's data from the API and store it in state.
+                // Retrieve Pokémon's data from the API and store it in state.
                 // Avoid storing empty objects inside data and search array.
                 try{
                     pokemon = await getPokemonData(id, pokemonInSearch.url);
@@ -79,7 +79,7 @@ export default function PokemonData({id,}: {id: number}){
                 }
             }
         }
-        // Set Pokemon to be displayed.
+        // Set Pokémon to be displayed.
         return pokemon;
     };
 
@@ -101,7 +101,7 @@ export default function PokemonData({id,}: {id: number}){
 
     return (
         <div className="flex flex-col gap-y-4 p-3 sm:p-6">
-            {/*Dialog with form to update a Pokemon.*/}
+            {/*Dialog with form to update a Pokémon.*/}
             <PokemonForm isDialogOpen={isDialogOpen}
                          onCloseDialog={() => setIsDialogOpen(false)}
                          onSaveChanges={onUpdate}
@@ -109,13 +109,13 @@ export default function PokemonData({id,}: {id: number}){
             />
             {
                 isLoading ?
-                    <Loading message="Loading Pokemon data..." />
+                    <Loading message="Loading Pokémon data..." />
                     :
                     item ?
                     <>
                         <div className="flex flex-col sm:flex-row gap-4">
                             <h1 className="font-bold text-4xl">{item.name} ({item.id})</h1>
-                            <Button className="" variant="contained" color="info" onClick={()=>setIsDialogOpen(true)}>Update Pokemon</Button>
+                            <Button className="" variant="contained" color="info" onClick={()=>setIsDialogOpen(true)}>Update Pokémon</Button>
                             <Button className="" variant="contained" color="success" onClick={askAI}>Ask AI Assistant</Button>
                         </div>
                         <Divider/>
@@ -144,7 +144,7 @@ export default function PokemonData({id,}: {id: number}){
                             }
                         </div>
                             <div className="flex flex-col gap-y-4">
-                                {/* Display AI obtained fact about Pokemon*/}
+                                {/* Display AI obtained fact about Pokémon*/}
                                 {
                                     isLoadingFact ? <Loading message="Using AI to retrieve an interesting fact..." /> :
                                     fact !== ""
@@ -202,7 +202,7 @@ export default function PokemonData({id,}: {id: number}){
                         </div>
                     </>
                         :
-                        <NoItems message="No information found for this Pokemon." />
+                        <NoItems message="No information found for this Pokémon." />
             }
         </div>
     );

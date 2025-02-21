@@ -4,12 +4,12 @@ import Divider from "@mui/material/Divider";
 import {useDataStore} from "@/stores/data-store";
 
 /**
- * Component displays search data from a Pokemon.
- * @param pokemon - Pokemon to be displayed.
+ * Component displays search data from a Pokémon.
+ * @param pokemon - Pokémon to be displayed.
  * @param refreshFilteredList - Function to refresh the filtered list on parent component.
  */
 export default function PokemonCard({pokemon}: { pokemon:any,}){
-    // Pokemon's search data.
+    // Pokémon's search data.
     const {id, name, url} = pokemon;
 
     // Application's state.

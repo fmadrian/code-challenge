@@ -15,18 +15,18 @@ import Button from "@mui/material/Button";
 import {useEffect} from "react";
 
 /**
- * Dialog that contains a form that allows to create or update a Pokemon.
+ * Dialog that contains a form that allows to create or update a Pokémon.
  * @param isDialogOpen Indicates if the dialog is open.
  * @param onCloseDialog Callback function to close the dialog.
  * @param onSaveChanges Callback function to save the changes made in the form.
- * @param element Pokemon data to be updated. If not passed, a new Pokemon will be created.
+ * @param element Pokémon data to be updated. If not passed, a new Pokémon will be created.
  */
 export default function PokemonForm({isDialogOpen, onCloseDialog, onSaveChanges, element,}
                                         : {isDialogOpen: boolean, onCloseDialog: () => void, onSaveChanges : (data:any) => void, element?: any}){
 
     const form = createForm(useForm({}));
 
-    // Set values passed in Pokemon to be updated.
+    // Set values passed in Pokémon to be updated.
     const setDefaultValues = () => {
         if(element){
             form.setValue("name", element.name);
@@ -52,7 +52,7 @@ export default function PokemonForm({isDialogOpen, onCloseDialog, onSaveChanges,
                 maxWidth="sm"
                 fullWidth={true}
             >
-                <DialogTitle id="data-dialog-title">{`${element ? "Update" : "Create"} Pokemon`}</DialogTitle>
+                <DialogTitle id="data-dialog-title">{`${element ? "Update" : "Create"} Pokémon`}</DialogTitle>
 
                 <form onSubmit={form.handleSubmit(onSaveChanges)}>
                     <DialogContent>

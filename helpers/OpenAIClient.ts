@@ -22,15 +22,15 @@ export class OpenAIClient {
     }
 
     /**
-     * Ask OpenAI to generate a fact about a Pokemon.
+     * Ask OpenAI to generate a fact about a Pokémon.
      *
-     * @param name Pokemon's name.
+     * @param name Pokémon's name.
      * @returns completion
      */
     public async askAboutPokemon(name: string) {
         try{
             name = name.replace("-", " ").trim();
-            const prompt = `Tell me an interesting or a funny fact about the Pokemon ${name}. If ${name} is not a Pokemon, just tell me it isn't a Pokemon and therefore you can't give me additional data about it.`;
+            const prompt = `Tell me an interesting or a funny fact about the Pokémon ${name}. If ${name} is not a Pokémon, just tell me it isn't a Pokémon and therefore you can't give me additional data about it.`;
             const completion = OpenAIClient.client.chat.completions.create({
                 model: "gpt-4o-mini",
                 messages: [
@@ -44,7 +44,7 @@ export class OpenAIClient {
             return await fact;
         }
         catch(error){
-            return `Could not retrieve additional information about this Pokemon, wait a few seconds and try again.`;
+            return `Could not retrieve additional information about this Pokémon, wait a few seconds and try again.`;
         }
     }
 }

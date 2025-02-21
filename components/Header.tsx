@@ -50,7 +50,7 @@ export default function Header(){
                     <Button variant="text" type="button">Main page</Button>
                 </Link>
                 <Link href="/pokemon">
-                    <Button variant="text" type="button">Pokemon list</Button>
+                    <Button variant="text" type="button">Pokémon list</Button>
                 </Link>
             </> : <></>
             }

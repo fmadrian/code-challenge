@@ -4,7 +4,7 @@ import axios from "axios";
 
 /**
  * Get the search data for all the Pokemons on from PokeAPI.
- * Each element has the Pokemon's name and API endpoint to retrieve all its data.
+ * Each element has the Pokémon's name and API endpoint to retrieve all its data.
  */
 export const getPokemonSearchData = async () => {
     try {
@@ -16,13 +16,13 @@ export const getPokemonSearchData = async () => {
            return {id: key+1, ...item};
         });
     } catch (error) {
-        console.error('Error getting Pokemon search data:', error);
+        console.error('Error getting Pokémon search data:', error);
         return [];
     }
 };
 /**
- * Uses the URL provided in the search response to retrieve the Pokemon's data.
- * @param url API endpoint to retrieve the Pokemon's data.
+ * Uses the URL provided in the search response to retrieve the Pokémon's data.
+ * @param url API endpoint to retrieve the Pokémon's data.
  */
 export const getPokemonData = async (id:number , url: string) => {
     try {
