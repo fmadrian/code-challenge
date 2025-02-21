@@ -25,7 +25,6 @@ export default function Page() {
 
     // Application's state.
     const searchData = useDataStore(state => state.searchData);
-    const setSearchData = useDataStore(state => state.setSearchData);
     const createPokemon = useDataStore(state => state.createPokemon);
     
     // Form to be used in page.
@@ -58,30 +57,12 @@ export default function Page() {
             setLastSearchTerm(term);
         }
     }
-    // TODO: Change placeholder data to actual data.
-    const placeholderData = [{id: 1, name: "golbat", url: "https://pokeapi.co/api/v2/pokemon/42/"},
-        {id: 2, name: "Ivysaur", url: ""}, {id: 3, name: "Venusaur", url: ""},
-        {id: 4, name: "oddish", url: "https://pokeapi.co/api/v2/pokemon/43/"},
-        {id: 5, name: "Charmeleon", url: ""},
-    ];
-
-    // Fetch data when component is mounted.
-    useEffect(() => {
-        setIsLoading(true);
-        /*
-        getPokemonSearchData().then((res)=> {
-         setSearchData(res);
-         setFilteredData(res);
-        });
-        */
-        setSearchData(placeholderData);
-        setFilteredData(placeholderData);
-        setIsLoading(false);
-    }, [])
 
     // Change filtered data when search data changes
     useEffect(() => {
+        setIsLoading(true);
         filterSearchData();
+        setIsLoading(false);
     }, [searchData])
 
     return (

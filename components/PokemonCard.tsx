@@ -19,7 +19,7 @@ export default function PokemonCard({pokemon}: { pokemon:any,}){
         <div className="transition border flex flex-col p-4 gap-y-4 hover:bg-neutral-100">
             <Link href={`/pokemon/${id}`}>
                 <div className="flex flex-col gap-y-2">
-                    <span className="text-lg">{name}</span>
+                    <span className="text-lg font-bold">{name}</span>
                     <Divider/>
                     <span className="text-md">{url === '' ? 'Created by user' : 'Retrieved from PokeAPI'}</span>
                 </div>

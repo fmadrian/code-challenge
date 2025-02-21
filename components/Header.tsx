@@ -14,7 +14,7 @@ export default function Header(){
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    // Resets all data in the application and fills search array.
+    // Resets all data in the application and fills the search array.
     const resetData = () => {
         setIsLoading(true);
         reset();
@@ -28,11 +28,13 @@ export default function Header(){
 
     // Redirects user to login page if not logged in, or to main page if we are logging out.
     const manageUser = () => {
+        setIsLoggedIn(!isLoggedIn);
         if(isLoggedIn){
             redirect('/');
         }else{
             redirect('/login');
         }
+
     }
 
     return (

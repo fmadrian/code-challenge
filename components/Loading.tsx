@@ -1,5 +1,4 @@
 import CircularProgress from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
 
 export default function Loading({message}: {message?:string}) {
     return (
