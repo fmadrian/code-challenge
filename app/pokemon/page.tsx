@@ -97,7 +97,7 @@ export default function Page() {
                             {filteredData.map((item, index) => <PokemonCard key={index} pokemon={item} />)}
                         </div> :
                         <>
-                            <NoItems message="No Pokemon were found" />
+                            <NoItems message="No Pokemon were found. Create one, change the search term or click 'Reset data'." />
                         </>
                     }
                 </> :
