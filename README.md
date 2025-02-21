@@ -4,7 +4,7 @@
 
   
 
-Adrián Fallas Marín's code challenge solution.
+Adrián Fallas Marín's code challenge solution: [fmadrian-codechallenge.netlify.app.](fmadrian-codechallenge.netlify.app).
 
   
 
@@ -13,18 +13,21 @@ Adrián Fallas Marín's code challenge solution.
 
 The solution developed is a web application to show different Pokémon and manage some of their data. The data is extracted using PokeAPI's API or is input by the user.
 
-The users can also ask the an AI assistant to give them additional facts about a Pokémon they are currently seeing.
+The users can also ask an AI assistant to give them additional facts about a Pokémon they are currently seeing.
 
 ### Web client
 
-Made with Next.js alongside MUI, axios, Jest (testing), zustand libraries. In addition, the application uses PokeAPI's API to retrieve basic Pokémon data and and OpenAI Completions API through my own API to get additional information about the Pokémon.
+Made with Next.js alongside MUI, axios, Jest (testing), zustand libraries. In addition, the application uses PokeAPI's API to retrieve basic Pokémon data and an external API to get additional information about the Pokémon.
+
 ### External/AI API
 
-To avoid exposing OpenAI's API key on the web client, I created and used an API with one endpoint which receives a Pokémon name and forwards it to OpenAI's model. 
+The application uses OpenAI Completions API to get additional information or facts about the different Pokémon.
+
+To avoid exposing OpenAI's API key on the web client, I created an API with one endpoint which receives a Pokémon's name and forwards it to OpenAI's gpt-4o-mini model. 
 
 The API was created with Express and deployed using Netlify Functions. The URL to its repository is: [https://github.com/fmadrian/code-challenge-chatapi](https://github.com/fmadrian/code-challenge-chatapi).
 
-### AI integration
+## AI integration
 
 OpenAI's Completions API provides complementary facts about the Pokémon selected. This improves the experience of searching a Pokémon's data as it offers data which is not given by PokeAPI.
 ## Application's URL and users
@@ -243,7 +246,3 @@ To the AI assistant additional information about a Pokémon, follow these steps.
   
 
 ![AI Assistant giving information](readme_images/ai-assistant.png)
-
-  
-
-##
