@@ -70,8 +70,13 @@ export default function PokemonData({id,}: {id: number}){
                 redirect('/not-found');
             }else {
                 // Retrieve Pokemon's data from the API and store it in state.
-                pokemon = await getPokemonData(id, pokemonInSearch.url);
-                createPokemon(pokemon);
+                // Avoid storing empty objects inside data and search array.
+                try{
+                    pokemon = await getPokemonData(id, pokemonInSearch.url);
+                    createPokemon(pokemon);
+                }catch(error){
+                    console.error(error);
+                }
             }
         }
         // Set Pokemon to be displayed.

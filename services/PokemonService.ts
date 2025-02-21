@@ -30,7 +30,7 @@ export const getPokemonData = async (id:number , url: string) => {
         // We must change the ID to the one assigned on the application.
         return {...res.data, id};
     } catch (error) {
-        console.error('Error getting Pokemon search data:', error);
-        return [];
+        // Let component handle the exception to avoid adding an empty object to the data array.
+        throw error;
     }
 }
