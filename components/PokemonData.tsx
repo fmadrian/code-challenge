@@ -129,7 +129,7 @@ export default function PokemonData({id,}: {id: number}){
                                        width={0}
                                        height={0}
                                        sizes="100vw"
-                                       className="w-full h-full"
+                                       className="w-full h-fit"
                                 />: <NoItems message="Image not available." />
                             }
                             {
@@ -139,7 +139,7 @@ export default function PokemonData({id,}: {id: number}){
                                            width={0}
                                            height={0}
                                            sizes="100vw"
-                                           className="w-full h-full"
+                                           className="w-full h-fit"
                                     />: <NoItems message="Image not available." />
                             }
                         </div>
@@ -150,7 +150,7 @@ export default function PokemonData({id,}: {id: number}){
                                     fact !== ""
                                     ?
                                     <>
-                                        <h3 className="text-lg font-bold">AI provided additional information
+                                        <h3 className="text-lg font-bold">Additional facts
                                             about {item.name}:</h3>
                                         <Alert severity="success">
                                             {fact}

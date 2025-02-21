@@ -42,7 +42,7 @@ export default function Login() {
         <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="flex flex-col flex-wrap gap-4 p-12 m-8 lg:max-w-md border ">
                 <h1 className="font-bold text-4xl">Login</h1>
-                <p>Enter your username (user1) and password (123).</p>
+                <p>Enter your username and password.</p>
                 <Divider />
                 {!loggedIn && attemptedLogin ? <Alert severity="error">Invalid username or password. Try with username:user1 and password:123.</Alert> : null}
                 <TextField id="name" label="Name" variant="filled"
