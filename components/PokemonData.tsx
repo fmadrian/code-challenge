@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from "react";
 import {useDataStore} from "@/stores/data-store";
-import {getPokemonData} from "@/services/PokemonService";
+import {getPokemonData} from "@/helpers/PokemonService";
 import Image from "next/image";
 import { redirect } from 'next/navigation'
 import Loading from "@/components/Loading";
@@ -17,7 +17,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import NoItems from "@/components/NoItems";
-import {OpenAIClient} from "@/services/OpenAIClient";
+import {OpenAIClient} from "@/helpers/OpenAIClient";
 import {Alert} from "@mui/material";
 
 /**

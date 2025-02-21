@@ -1,4 +1,4 @@
-import {createForm} from "@/services/FormService";
+import {createForm} from "@/helpers/FormService";
 import {Controller, useForm} from "react-hook-form";
 
 import Dialog from "@mui/material/Dialog";

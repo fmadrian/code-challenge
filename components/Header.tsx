@@ -2,7 +2,7 @@ import Link from "next/link";
 import {useState} from "react";
 import Button from "@mui/material/Button";
 import {redirect} from "next/navigation";
-import {getPokemonSearchData} from "@/services/PokemonService";
+import {getPokemonSearchData} from "@/helpers/PokemonService";
 import {useDataStore} from "@/stores/data-store";
 import {useAuthStore} from "@/stores/auth-store";
 

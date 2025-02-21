@@ -2,11 +2,10 @@
 
 import {useEffect, useState} from "react";
 import {useDataStore} from "@/stores/data-store";
-// import {getPokemonSearchData} from "@/services/PokemonService";
 import {Button, Divider, TextField} from "@mui/material";
 import PokemonCard from "@/components/PokemonCard";
 import {useForm} from "react-hook-form";
-import {createForm} from "@/services/FormService";
+import {createForm} from "@/helpers/FormService";
 import Loading from "@/components/Loading";
 import NoItems from "@/components/NoItems";
 import PokemonForm from "@/components/PokemonForm";
