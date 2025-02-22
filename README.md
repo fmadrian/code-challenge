@@ -1,6 +1,6 @@
 # code-challenge
 
-Adrián Fallas Marín's code challenge solution: [fmadrian-codechallenge.netlify.app](fmadrian-codechallenge.netlify.app).
+Adrián Fallas Marín's code challenge solution: [https://fmadrian-codechallenge.netlify.app](https://fmadrian-codechallenge.netlify.app).
 
 ## Description of solution
 
