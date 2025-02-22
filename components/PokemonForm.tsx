@@ -70,8 +70,7 @@ export default function PokemonForm({isDialogOpen, onCloseDialog, onSaveChanges,
                             <TextField id="height" label="Height" variant="filled"
                                        slotProps={{input: {type: "number",}}}
                                        {...(form.register)('height', {
-                                           required: 'Height is required',
-                                           minValue: {value: 0, message: 'Height must be greater than 0'}
+                                           required: 'Height is required'
                                        })}
                                        error={!!form.errors.height}
                                        helperText={form.errors.height?.message}/>
