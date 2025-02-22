@@ -28,7 +28,7 @@ describe('[COMPONENT] - PokemonData', () => {
         })
     });
 
-    // Render the component with a Pokémon's data.
+    // Unit test: Render the component with a Pokémon's data.
     it(`includes Pokémon's data`, async () => {
         // 1. Arrange.
 
@@ -86,7 +86,7 @@ describe('[COMPONENT] - PokemonData', () => {
         expect(images.length).toBe(2);
     });
 
-    // Click ask AI assistant button and checks the alert has been displayed.
+    // Integration test: Click ask AI assistant button and checks the alert has been displayed.
     it('click ask ai assistant button displays alert', async () => {
         // 1. Arrange.
 

@@ -2,7 +2,6 @@ import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Page from "@/app/pokemon/page";
-import {beforeEach} from "jest-circus";
 
 describe('[PAGE] - Pokemon index - /pokemon', () => {
 
@@ -40,7 +39,7 @@ describe('[PAGE] - Pokemon index - /pokemon', () => {
         }));
     }
 
-    // Component renders.
+    // Integration test: Component renders without element.
     it('renders component without elements', () => {
         // 1. Arrange.
 
@@ -66,7 +65,7 @@ describe('[PAGE] - Pokemon index - /pokemon', () => {
         expect(noPokemonMessage).toBeInTheDocument();
     });
 
-    // Pressing create button opens form.
+    // Integration test: Pressing create button opens form.
     it('pressing create button opens the pokémon create form.', async () => {
         // 1. Arrange
 
@@ -113,7 +112,7 @@ describe('[PAGE] - Pokemon index - /pokemon', () => {
         expect(buttonCancel).toBeInTheDocument();
     });
 
-    // Pressing delete Pokémon on a Pokémon deletes it.
+    // Integration test: Pressing delete Pokémon on a Pokémon deletes it.
     it ('delete a Pokemon', async () => {
         // 1. Arrange
         const name = "Butterfree";
@@ -137,7 +136,7 @@ describe('[PAGE] - Pokemon index - /pokemon', () => {
         expect(deleteButton).not.toBeInTheDocument();
     });
 
-    // Creates a Pokémon.
+    // Integration test: Creates a Pokémon.
     it('creates a pokémon.', async () => {
         // 1. Arrange
 
@@ -156,7 +155,7 @@ describe('[PAGE] - Pokemon index - /pokemon', () => {
         expect(confirmationMessage).toBeInTheDocument();
     });
 
-    // Searches for a Pokémon using a search term.
+    // Integration test: Searches for a Pokémon using a search term.
     it('searches for a pokémon.', async () => {
         const name = "Mewtwo", searchTerm = "me";
 

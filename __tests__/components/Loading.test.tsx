@@ -1,14 +1,14 @@
-import {act, render, screen} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import Loading from "@/components/Loading";
 
 describe('[COMPONENT] - Loading', () => {
-    // Render the component with a message different from the default message.
-    it('renders with a message', async () => {
+    // Unit test: Render the component with a message different from the default message.
+    it('renders with a message', () => {
         // 1. Arrange
         const message = "This is a test message to show in the component.";
 
         // Render the component.
-        await act(async () => render(<Loading message={message} />));
+        render(<Loading message={message} />);
 
         // 2. Act
 

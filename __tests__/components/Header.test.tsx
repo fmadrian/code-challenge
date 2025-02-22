@@ -1,11 +1,10 @@
-import {act, render, screen} from "@testing-library/react";
-import NoItems from "@/components/NoItems";
+import {render, screen} from "@testing-library/react";
 import {mockUseAuthStore} from "@/jest.setup";
 import Header from "@/components/Header";
 
-describe('[COMPONENT] - NoItems', () => {
+describe('[COMPONENT] - Header', () => {
 
-
+    // Unit test: Component renders without not being authenticated.
     it('renders while being unauthenticated',  () => {
         // 1. Arrange
 
@@ -32,6 +31,7 @@ describe('[COMPONENT] - NoItems', () => {
         expect(linkReadme).toBeInTheDocument();
     });
 
+    // Unit test: Component renders without being authenticated.
     it('renders while being authenticated',  () => {
         // 1. Arrange
 

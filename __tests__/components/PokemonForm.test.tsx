@@ -4,7 +4,7 @@ import PokemonForm from "@/components/PokemonForm";
 
 describe('[COMPONENT] - PokemonForm', () => {
 
-
+    // Unit test: Attempt to save the form while data is missing.
     it('save form while data is missing', async () => {
 
         const user = userEvent.setup();
@@ -12,7 +12,6 @@ describe('[COMPONENT] - PokemonForm', () => {
         // 1. Arrange
 
         // Render the component.
-        // await act(async () => render(<PokemonData id={2001} />));
         render(<PokemonForm isDialogOpen={true} onSaveChanges={jest.fn} onCloseDialog={jest.fn} />);
 
         // 2. Act

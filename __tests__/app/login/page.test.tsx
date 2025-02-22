@@ -3,6 +3,7 @@ import Login from "@/app/login/page";
 
 describe('[PAGE] - Login - /login', () => {
 
+    // Unit test: Check if the page renders correctly.
     it('renders', () => {
         // 1. Arrange
 

@@ -1,10 +1,12 @@
-import {act, render, screen} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import PokemonCard from "@/components/PokemonCard";
 
 describe('[COMPONENT] - PokemonCard', () => {
-    // Render the component with a user created Pokemon's search information
+    // Unit test: Render the component with a user created Pokemon's search information
     it('renders with user created Pokémon', () => {
         // 1. Arrange
+
+        // Set Pokemon's search data.
         const pokemon = {
             id: 1,
             name: "bulbasaur",
@@ -32,8 +34,10 @@ describe('[COMPONENT] - PokemonCard', () => {
     });
 
     // Render the component with an API-retrieved Pokemon's search information
-    it('renders with API retrieved Pokémon', () => {
+    it('renders with an "API" retrieved Pokémon', () => {
         // 1. Arrange
+
+        // Set Pokemon's search data as if it was retrieved from the API.
         const pokemon = {
             id: 1,
             name: "bulbasaur",
