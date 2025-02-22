@@ -1,6 +1,6 @@
 import {mockUseDataStore} from "@/jest.setup";
 import PokemonData from "@/components/PokemonData";
-import {act, render, screen} from "@testing-library/react";
+import {act, render, screen, waitForElementToBeRemoved} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 describe('[COMPONENT] - PokemonData', () => {
 
@@ -100,10 +100,14 @@ describe('[COMPONENT] - PokemonData', () => {
 
         // 2. Act
 
+        // Wait for progress bar to disappear.
+        // Given a 10 second timeout to allow the AI assistant to return a response.
+        await waitForElementToBeRemoved(()=> screen.getAllByRole('progressbar'),{timeout : 10000});
         // Search alert component
         const alert = screen.getByRole('alert');
 
         // 3. Assert.
         expect(alert).toBeInTheDocument();
     });
+
 });

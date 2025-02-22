@@ -2,6 +2,7 @@ import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Page from "@/app/pokemon/page";
+import {beforeEach} from "jest-circus";
 
 describe('[PAGE] - Pokemon index - /pokemon', () => {
 
@@ -40,7 +41,7 @@ describe('[PAGE] - Pokemon index - /pokemon', () => {
     }
 
     // Component renders.
-    it('renders', () => {
+    it('renders component without elements', () => {
         // 1. Arrange.
 
         // Render the component.
