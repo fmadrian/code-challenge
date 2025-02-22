@@ -18,7 +18,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import NoItems from "@/components/NoItems";
 import {Alert} from "@mui/material";
-import {askAIAboutPokemon} from "@/helpers/OpenAIClient";
+import {askAIAboutPokemon} from "@/helpers/OpenAIService";
 
 /**
  * Component in charge of searching
