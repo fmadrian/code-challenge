@@ -40,9 +40,7 @@ OpenAI's Completions API provides complementary facts about the Pokémon selecte
 
 ### GitHub Copilot
 
-I used GitHub Copilot to autocomplete the application's code.
-
-This was very useful as it would give me snippets of code I could use as a reference to write unit and integration tests. Additionally, the autocomplete feature allowed me to speed up the development of the application.
+I used GitHub Copilot's autocomplete feature as a complement during development. This allowed me to speed up the application's development by providing me boilerplate code during the application's development and snippets of code I could use as a reference to write unit and integration tests. 
 
 ### LanguageTool
 
