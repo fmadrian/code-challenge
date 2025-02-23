@@ -6,7 +6,19 @@ Adrián Fallas Marín's code challenge solution: [https://fmadrian-codechallenge
 
 The solution developed is a web application to show different Pokémon and manage some of their data. The data is extracted using PokeAPI's API or is input by the user.
 
-The users can also ask an AI assistant to give them additional facts about a Pokémon they are currently seeing.
+The information displayed and input by the user is the following:
+
+- ID: Pokémon's ID inside the application.
+- Name: Pokémon's name.
+- Base experience: EXP value a Pokémon gains after defeating other Pokémon.
+- Height: Pokémon's height (decimeters).
+- Weight: Pokémon's weight (hectograms).
+- Order: Pokémon national order.
+- Is default: Is this Pokémon default for its species.
+
+The application will also display the default front and back images of the Pokémon if they are available. 
+  
+Finally, the users can also ask an AI assistant to give them additional facts about a Pokémon they are currently seeing.
 
 ### Web client
 
@@ -84,17 +96,23 @@ Example
 
 ```
 
-## Locally run the application
+## Locally run the application 
 
-### Requisites
+### Requirements 
 
 Before running the application, you need:
 
-1. An OpenAI Completions API key.
+1. An API that provides access to a Generative AI API service like (OpenAI Completions, Anthropic Claude, Google Gemini, or others). [See the example used for this project](https://github.com/fmadrian/code-challenge-chatapi).
 
 2. Rename the file ***.env.example*** to ***.env*** and fill in the missing environment variables.
 
-### Command
+3. Install all the packages required by running the following command:
+
+```
+npm i
+```
+
+### Start the application  
 
 To run the application, use the following command in the root folder of this project.
 
