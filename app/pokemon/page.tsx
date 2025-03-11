@@ -23,6 +23,7 @@ export default function Page() {
     const [filteredData, setFilteredData] = useState<any[]>([]);
 
     // Application's state.
+    const data = useDataStore(state => state.data);
     const searchData = useDataStore(state => state.searchData);
     const createPokemon = useDataStore(state => state.createPokemon);
     
@@ -93,7 +94,7 @@ export default function Page() {
                     <span className="text-xl">Showing {filteredData.length} of {searchData.length} possible results:</span>
                     {filteredData && filteredData.length > 0 ?
                         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8">
-                            {filteredData.map((item, index) => <PokemonCard key={index} pokemon={item} />)}
+                            {filteredData.map((item, index) => <PokemonCard key={index} pokemonSearchData={item} pokemonData={data.find(p => p.id === item.id)} />)}
                         </div> :
                         <>
                             <NoItems message="No Pokémon were found. Create one, change the search term or click 'Reset data'." />

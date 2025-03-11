@@ -33,7 +33,9 @@ export default function AppLayout({
         <div className="size-full">
             <ThemeProvider theme={customTheme}>
                 <Header />
+                <div className="flex flex-col gap-y-4 p-3 sm:p-6">
                 {children}
+                </div>
             </ThemeProvider>
         </div>
     );

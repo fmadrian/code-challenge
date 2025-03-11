@@ -36,10 +36,8 @@ export default function Header(){
     const manageUser = () => {
         if(loggedIn){
             logout();
-            redirect("/login");
-        }else{
-            redirect("/login");
         }
+        redirect("/login");
 
     }
 

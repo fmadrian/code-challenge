@@ -5,7 +5,7 @@ import PokemonForm from "@/components/PokemonForm";
 describe('[COMPONENT] - PokemonForm', () => {
 
     // Unit test: Attempt to save the form while data is missing.
-    it('save form while data is missing', async () => {
+    it('form should not save if any data is missing', async () => {
 
         const user = userEvent.setup();
 
@@ -27,6 +27,16 @@ describe('[COMPONENT] - PokemonForm', () => {
         expect(screen.getByText(/height is required/i)).toBeInTheDocument();
         expect(screen.getByText(/weight is required/i)).toBeInTheDocument();
         expect(screen.getByText(/order is required/i)).toBeInTheDocument();
+        expect(screen.getByText(/type is required/i)).toBeInTheDocument();
+        expect(screen.getByText(/order is required/i)).toBeInTheDocument();
+        expect(screen.getByText(/hp is required/i)).toBeInTheDocument();
+        expect(screen.getByText("ATTACK is required")).toBeInTheDocument();
+        expect(screen.getByText("DEFENSE is required")).toBeInTheDocument();
+        expect(screen.getByText(/special attack is required/i)).toBeInTheDocument();
+        expect(screen.getByText(/special defense is required/i)).toBeInTheDocument();
+        expect(screen.getByText(/speed is required/i)).toBeInTheDocument();
+
+
 
     });
 });

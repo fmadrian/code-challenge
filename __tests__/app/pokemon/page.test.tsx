@@ -2,6 +2,7 @@ import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Page from "@/app/pokemon/page";
+import {mockUseDataStore} from "@/jest.setup";
 
 describe('[PAGE] - Pokemon index - /pokemon', () => {
 
@@ -117,15 +118,22 @@ describe('[PAGE] - Pokemon index - /pokemon', () => {
         // 1. Arrange
         const name = "Butterfree";
         // Render the component.
+        mockUseDataStore(
+            {
+                searchData: [
+                    {id: 1, name, url : ""}
+                ],
+            }
+        )
         render(<Page/>);
         // Create a Pokémon.
-        await createPokemon(name);
+        // await createPokemon(name);
 
         // 2. Act
 
-        await user.click(screen.getByRole('button', {
+        /*await user.click(screen.getByRole('button', {
             name: /cancel/i
-        }));
+        }));*/
         const deleteButton = screen.getByText(/delete/i);
         await user.click(deleteButton);
 
@@ -181,4 +189,6 @@ describe('[PAGE] - Pokemon index - /pokemon', () => {
         expect(pokemon).toBeInTheDocument();
         expect(confirmationMessage.length).toBe(1);
     });
+
+    it('updates a pokémon.', async () => {});
 });

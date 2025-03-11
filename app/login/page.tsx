@@ -40,7 +40,7 @@ export default function Login() {
     return (
         <>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="flex flex-col flex-wrap gap-4 p-12 m-8 lg:max-w-md border ">
+            <div className="flex flex-col flex-wrap gap-4 p-12 m-8 lg:max-w-md border">
                 <h1 className="font-bold text-4xl">Login</h1>
                 <p>Enter your username and password.</p>
                 <Divider />
